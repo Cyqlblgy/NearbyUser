@@ -9,6 +9,12 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *appName;
+@property (weak, nonatomic) IBOutlet UITextField *longitudeTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *latitudeTextfield;
+@property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 

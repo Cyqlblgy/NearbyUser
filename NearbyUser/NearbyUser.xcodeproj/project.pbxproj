@@ -14,6 +14,7 @@
 		B9F99ADB1A1ACF9000208F53 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9F99ADA1A1ACF9000208F53 /* Images.xcassets */; };
 		B9F99ADE1A1ACF9000208F53 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9F99ADC1A1ACF9000208F53 /* LaunchScreen.xib */; };
 		B9F99AEA1A1ACF9100208F53 /* NearbyUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AE91A1ACF9100208F53 /* NearbyUserTests.m */; };
+		B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AF61A1AD81800208F53 /* ResultViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		B9F99AE31A1ACF9100208F53 /* NearbyUserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyUserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F99AE81A1ACF9100208F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9F99AE91A1ACF9100208F53 /* NearbyUserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NearbyUserTests.m; sourceTree = "<group>"; };
+		B9F99AF51A1AD81800208F53 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		B9F99AF61A1AD81800208F53 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +88,11 @@
 				B9F99AD21A1ACF9000208F53 /* AppDelegate.m */,
 				B9F99AD41A1ACF9000208F53 /* ViewController.h */,
 				B9F99AD51A1ACF9000208F53 /* ViewController.m */,
-				B9F99AD71A1ACF9000208F53 /* Main.storyboard */,
-				B9F99ADA1A1ACF9000208F53 /* Images.xcassets */,
 				B9F99ADC1A1ACF9000208F53 /* LaunchScreen.xib */,
+				B9F99AD71A1ACF9000208F53 /* Main.storyboard */,
+				B9F99AF51A1AD81800208F53 /* ResultViewController.h */,
+				B9F99AF61A1AD81800208F53 /* ResultViewController.m */,
+				B9F99ADA1A1ACF9000208F53 /* Images.xcassets */,
 				B9F99ACD1A1ACF9000208F53 /* Supporting Files */,
 			);
 			path = NearbyUser;
@@ -168,6 +173,7 @@
 				TargetAttributes = {
 					B9F99AC91A1ACF9000208F53 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = QYRQ3GU6GA;
 					};
 					B9F99AE21A1ACF9100208F53 = {
 						CreatedOnToolsVersion = 6.1;
@@ -222,6 +228,7 @@
 				B9F99AD61A1ACF9000208F53 /* ViewController.m in Sources */,
 				B9F99AD31A1ACF9000208F53 /* AppDelegate.m in Sources */,
 				B9F99AD01A1ACF9000208F53 /* main.m in Sources */,
+				B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
