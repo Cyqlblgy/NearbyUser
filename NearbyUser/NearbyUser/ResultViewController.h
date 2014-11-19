@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface ResultViewController : UIViewController
 
-@property(nonatomic, strong) NSArray *result;
+@property(nonatomic, strong) CLLocation *currentLocation;
 
 @end

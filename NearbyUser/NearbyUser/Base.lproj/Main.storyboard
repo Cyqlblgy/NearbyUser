@@ -78,13 +78,33 @@
                                     <segue destination="Wm3-OZ-JVc" kind="show" identifier="resultIdentifier" id="0kV-PB-rvt"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UvB-Jq-2w7">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Get Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="91" y="331" width="125" height="30"/>
+                                </variation>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="UvB-Jq-2w7"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="UvB-Jq-2w7"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="g7x-pe-Sgt"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="appName" destination="IFf-h2-l4H" id="L3K-B6-DUR"/>
+                        <outlet property="getLocationButton" destination="UvB-Jq-2w7" id="wkQ-Vp-5E0"/>
                         <outlet property="latitudeLabel" destination="BWj-3g-5B1" id="faT-9d-X0g"/>
                         <outlet property="latitudeTextfield" destination="gmD-bL-BGP" id="qNm-6Y-uy2"/>
                         <outlet property="longitudeLabel" destination="0sv-pZ-uEl" id="25e-BV-N6M"/>

@@ -8,7 +8,9 @@
 
 #import "ResultViewController.h"
 
-@interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSArray *locations;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -17,6 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    CLLocationDegrees d1= 10;
+    CLLocationDegrees d2= 120;
+    CLLocationDegrees d3= 230;
+    CLLocationDegrees d4= -40;
+    CLLocationDegrees d5= 50;
+    CLLocationDegrees d6= 160;
+    CLLocation *location1= [[CLLocation alloc] initWithLatitude:d1 longitude:d2];
+    CLLocation *location2= [[CLLocation alloc] initWithLatitude:d3 longitude:d4];
+    CLLocation *location3= [[CLLocation alloc] initWithLatitude:d5 longitude:d6];
+    locations = [NSArray arrayWithObjects:location1,location2,location3,nil];
     // Do any additional setup after loading the view.
 }
 
@@ -40,7 +52,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection: (NSInteger)section{
-    return  [self.result count];
+    return  [locations count];
 }
 
 
@@ -49,7 +61,10 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"resultcell"];
     }
-    cell.textLabel.text = self.result[indexPath.row];
+    CLLocation *loc = locations[indexPath.row];
+    CLLocationDistance distance= [loc distanceFromLocation:_currentLocation];
+//    cell.textLabel.text =[NSString stringWithFormat:@"%f,  %f",loc.coordinate.longitude,loc.coordinate.latitude];
+    cell.textLabel.text = [NSString stringWithFormat:@"Distance: %f Km", distance/1000];
     return cell;
 }
 

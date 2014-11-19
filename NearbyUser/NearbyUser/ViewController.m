@@ -8,12 +8,12 @@
 
 #import "ViewController.h"
 #import "ResultViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()<UITextFieldDelegate>{
-    NSArray *defaultUser;
+@interface ViewController ()<UITextFieldDelegate,CLLocationManagerDelegate>{
+    NSArray *calculateResult;
     NSString *longitude;
     NSString *latitude;
-    NSArray *calculateResult;
 }
 @property (weak, nonatomic) IBOutlet UILabel *appName;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTextfield;
@@ -21,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *longitudeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *latitudeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
+@property (weak, nonatomic) IBOutlet UIButton *getLocationButton;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -28,11 +30,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    defaultUser = [NSArray arrayWithObjects:@"21.90",@"22.90",nil];
     _longitudeTextfield.tag = 0;
     _latitudeTextfield.tag = 1;
-//    [self.submitButton addTarget:self action:@selector(Docalculate:) forControlEvents:UIControlEventTouchUpInside];
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.Delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationManager.distanceFilter = kCLDistanceFilterNone;
+    if([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]){
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    [_locationManager startUpdatingLocation];
+
+    [self.getLocationButton addTarget:self action:@selector(Docalculate:) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)Docalculate:(id)sender{
+    _longitudeTextfield.text = [NSString stringWithFormat:@"%f",_locationManager.location.coordinate.longitude];
+    _latitudeTextfield.text = [NSString stringWithFormat:@"%f",_locationManager.location.coordinate.latitude];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,17 +56,13 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSString *defaultLon = defaultUser[0];
-    NSString *defaultLat = defaultUser[1];
-    if([latitude isEqualToString:defaultLat] && [longitude isEqualToString:defaultLon]){
-        calculateResult = defaultUser;
-    }
     if([[segue identifier] isEqualToString:@"resultIdentifier"]){
         ResultViewController *resultVC= segue.destinationViewController;
-        resultVC.result = calculateResult;
+        resultVC.currentLocation = _locationManager.location;
     }
 }
 
+#pragma TextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if(textField.tag == 0){
         longitude = [textField text];
@@ -66,6 +77,17 @@
     [textField resignFirstResponder];
     [self.view endEditing:YES];
     return NO;
+}
+
+#pragma LocationManager
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"Updated Failed");
+    [_locationManager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    NSLog(@"Updated Location");
+    [_locationManager stopUpdatingLocation];
 }
 
 @end
