@@ -24,6 +24,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="125" y="231" width="151" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Db9-tO-xIU"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gmD-bL-BGP" userLabel="Latitude text">
                                 <rect key="frame" x="185" y="349" width="231" height="30"/>
@@ -32,6 +35,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="125" y="289" width="151" height="30"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="a5U-cA-aVa"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Longitude:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sv-pZ-uEl" userLabel="Longitude label">
                                 <rect key="frame" x="79" y="231" width="88" height="21"/>
@@ -69,7 +75,7 @@
                                     <rect key="frame" x="125" y="369" width="57" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="Wm3-OZ-JVc" kind="show" id="0kV-PB-rvt"/>
+                                    <segue destination="Wm3-OZ-JVc" kind="show" identifier="resultIdentifier" id="0kV-PB-rvt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,8 +111,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="-9" y="0.0" width="329" height="625"/>
+                                    <rect key="frame" x="-9" y="64" width="329" height="561"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="Wm3-OZ-JVc" id="Eb8-YC-45x"/>
+                                    <outlet property="delegate" destination="Wm3-OZ-JVc" id="P9z-r4-W72"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

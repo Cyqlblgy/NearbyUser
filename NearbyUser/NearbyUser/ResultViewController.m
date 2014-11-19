@@ -8,7 +8,7 @@
 
 #import "ResultViewController.h"
 
-@interface ResultViewController ()
+@interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -34,5 +34,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return  1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection: (NSInteger)section{
+    return  [self.result count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"resultcell"];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"resultcell"];
+    }
+    cell.textLabel.text = self.result[indexPath.row];
+    return cell;
+}
 
 @end
