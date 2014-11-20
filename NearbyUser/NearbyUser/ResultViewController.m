@@ -9,7 +9,8 @@
 #import "ResultViewController.h"
 
 @interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    NSArray *locations;
+    NSMutableArray *locations;
+    NSMutableArray *users;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -19,17 +20,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CLLocationDegrees d1= 10;
-    CLLocationDegrees d2= 120;
-    CLLocationDegrees d3= 230;
-    CLLocationDegrees d4= -40;
-    CLLocationDegrees d5= 50;
-    CLLocationDegrees d6= 160;
-    CLLocation *location1= [[CLLocation alloc] initWithLatitude:d1 longitude:d2];
-    CLLocation *location2= [[CLLocation alloc] initWithLatitude:d3 longitude:d4];
-    CLLocation *location3= [[CLLocation alloc] initWithLatitude:d5 longitude:d6];
-    locations = [NSArray arrayWithObjects:location1,location2,location3,nil];
+    users = [NSMutableArray arrayWithCapacity:10000];
+    locations = [NSMutableArray arrayWithCapacity:10000];
+    for(int i =0 ; i< 10000 ; i++){
+        CLLocationDegrees longitude = random()%360 - 180;
+        CLLocationDegrees latitude  = random()%180 - 90;
+        CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+        [users addObject:location];
+    }
+    [self findNearbyUser];
+    [_tableView reloadData];
     // Do any additional setup after loading the view.
+}
+
+
+- (void)findNearbyUser{
+    for(CLLocation *loc in users){
+      CLLocationDistance distance= [loc distanceFromLocation:_currentLocation];
+        if(distance/100000 < 10){
+            [locations addObject:loc];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,10 +73,11 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"resultcell"];
     }
     CLLocation *loc = locations[indexPath.row];
-    CLLocationDistance distance= [loc distanceFromLocation:_currentLocation];
-//    cell.textLabel.text =[NSString stringWithFormat:@"%f,  %f",loc.coordinate.longitude,loc.coordinate.latitude];
-    cell.textLabel.text = [NSString stringWithFormat:@"Distance: %f Km", distance/1000];
+    CLLocationDistance dis = [loc distanceFromLocation:_currentLocation];
+    cell.textLabel.text = [NSString stringWithFormat:@"Long: %.0f,Lat: %.0f, Distance: %.0f Km", loc.coordinate.longitude, loc.coordinate.latitude,dis/1000];
     return cell;
 }
+
+
 
 @end
