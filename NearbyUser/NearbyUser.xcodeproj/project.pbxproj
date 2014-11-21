@@ -16,6 +16,7 @@
 		B9F99AEA1A1ACF9100208F53 /* NearbyUserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AE91A1ACF9100208F53 /* NearbyUserTests.m */; };
 		B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AF61A1AD81800208F53 /* ResultViewController.m */; };
 		B9F99AF91A1C2EF500208F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F99AF81A1C2EF500208F53 /* CoreLocation.framework */; };
+		B9F99AFF1A1ED14F00208F53 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AFE1A1ED14F00208F53 /* SVProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,8 @@
 		B9F99AF51A1AD81800208F53 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		B9F99AF61A1AD81800208F53 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		B9F99AF81A1C2EF500208F53 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B9F99AFD1A1ED14F00208F53 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = NearbyUser/SVProgressHUD.h; sourceTree = "<group>"; };
+		B9F99AFE1A1ED14F00208F53 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = NearbyUser/SVProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 		B9F99AC11A1ACF9000208F53 = {
 			isa = PBXGroup;
 			children = (
+				B9F99B001A1ED1EC00208F53 /* Extra */,
 				B9F99AFA1A1C2F0700208F53 /* Frameworks */,
 				B9F99ACC1A1ACF9000208F53 /* NearbyUser */,
 				B9F99AE61A1ACF9100208F53 /* NearbyUserTests */,
@@ -134,6 +138,15 @@
 				B9F99AF81A1C2EF500208F53 /* CoreLocation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9F99B001A1ED1EC00208F53 /* Extra */ = {
+			isa = PBXGroup;
+			children = (
+				B9F99AFD1A1ED14F00208F53 /* SVProgressHUD.h */,
+				B9F99AFE1A1ED14F00208F53 /* SVProgressHUD.m */,
+			);
+			name = Extra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +252,7 @@
 			files = (
 				B9F99AD61A1ACF9000208F53 /* ViewController.m in Sources */,
 				B9F99AD31A1ACF9000208F53 /* AppDelegate.m in Sources */,
+				B9F99AFF1A1ED14F00208F53 /* SVProgressHUD.m in Sources */,
 				B9F99AD01A1ACF9000208F53 /* main.m in Sources */,
 				B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */,
 			);

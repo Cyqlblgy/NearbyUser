@@ -12,8 +12,6 @@
 
 @interface ViewController ()<UITextFieldDelegate,CLLocationManagerDelegate>{
     NSArray *calculateResult;
-    NSString *longitude;
-    NSString *latitude;
 }
 @property (weak, nonatomic) IBOutlet UILabel *appName;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeTextfield;
@@ -30,8 +28,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _longitudeTextfield.tag = 0;
-    _latitudeTextfield.tag = 1;
     _locationManager = [[CLLocationManager alloc] init];
     _locationManager.Delegate = self;
     _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -62,14 +58,14 @@
     }
 }
 
+
+
 #pragma TextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return NO;
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if(textField.tag == 0){
-        longitude = [textField text];
-    }
-    else{
-        latitude = [textField text];
-    }
     [textField resignFirstResponder];
 }
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6BF90A72-73A2-4A81-BAE2-69FD91F632F8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NearbyUser</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F289C7C47DEA026A7A5E7F1E9F3767F163F1BF20</key>
+		<string>https://github.com/Cyqlblgy/NearbyUser.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>NearbyUser/NearbyUser.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F289C7C47DEA026A7A5E7F1E9F3767F163F1BF20</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Cyqlblgy/NearbyUser.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F289C7C47DEA026A7A5E7F1E9F3767F163F1BF20</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F289C7C47DEA026A7A5E7F1E9F3767F163F1BF20</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NearbyUser</string>
+		</dict>
+	</array>
+</dict>
+</plist>

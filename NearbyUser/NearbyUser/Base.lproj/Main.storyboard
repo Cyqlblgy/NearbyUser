@@ -128,36 +128,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uVc-K8-soh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TDf-H5-wal">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="o27-jg-we3">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Wm3-OZ-JVc" id="nAP-5k-e1y"/>
+                                            <outlet property="delegate" destination="Wm3-OZ-JVc" id="cy8-4r-j9m"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="o27-jg-we3"/>
+                                    </mask>
+                                </variation>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                    <mask key="subviews">
+                                        <include reference="o27-jg-we3"/>
+                                    </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="dataSource" destination="Wm3-OZ-JVc" id="Eb8-YC-45x"/>
-                                    <outlet property="delegate" destination="Wm3-OZ-JVc" id="P9z-r4-W72"/>
+                                    <outlet property="delegate" destination="Wm3-OZ-JVc" id="Rga-fb-LEl"/>
                                 </connections>
-                            </tableView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="uVc-K8-soh"/>
+                                <exclude reference="TDf-H5-wal"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="uVc-K8-soh"/>
+                                <include reference="TDf-H5-wal"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="tableView" destination="uVc-K8-soh" id="qFe-k4-rBM"/>
+                        <outlet property="scrollView" destination="TDf-H5-wal" id="WPw-Pa-lFc"/>
+                        <outlet property="tableView" destination="o27-jg-we3" id="CGw-YL-x29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cqv-8Z-DlR" userLabel="First Responder" sceneMemberID="firstResponder"/>

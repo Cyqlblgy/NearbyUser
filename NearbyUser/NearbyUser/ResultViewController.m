@@ -7,12 +7,17 @@
 //
 
 #import "ResultViewController.h"
+#import "SVProgressHUD.h"
 
-@interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     NSMutableArray *locations;
     NSMutableArray *users;
+    NSMutableArray *currentusers;
+    int maxPages;
+    int currentPage;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -20,32 +25,74 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    currentPage = 0;
     users = [NSMutableArray arrayWithCapacity:10000];
     locations = [NSMutableArray arrayWithCapacity:10000];
+    currentusers = [NSMutableArray arrayWithCapacity:100000];
     for(int i =0 ; i< 10000 ; i++){
         CLLocationDegrees longitude = random()%360 - 180;
         CLLocationDegrees latitude  = random()%180 - 90;
         CLLocation *location = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
-        [users addObject:location];
+        [locations addObject:location];
     }
-    [self findNearbyUser];
-    [_tableView reloadData];
     // Do any additional setup after loading the view.
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self findNearbyUser];
+    if([users count] == 0){
+        [self showError];
+    }else{
+        [self getMoreData];
+    }
+}
 
 - (void)findNearbyUser{
-    for(CLLocation *loc in users){
+    for(CLLocation *loc in locations){
       CLLocationDistance distance= [loc distanceFromLocation:_currentLocation];
         if(distance/100000 < 10){
-            [locations addObject:loc];
+            [users addObject:loc];
         }
     }
+    maxPages = [users count]/50;
+}
+
+- (void)getMoreData{
+    [SVProgressHUD showProgress:2 status:@"Loading..." maskType:SVProgressHUDMaskTypeBlack];
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self
+                                   selector:@selector(myDismiss) userInfo:nil repeats:NO];
+    if(currentPage < maxPages){
+        for(int i= currentPage*50;i <(currentPage+1)*50; i++){
+            [currentusers addObject:users[i]];
+        }
+    }
+    else{
+        int usercount = [users count];
+        for(int i = currentPage*50; i <usercount; i++){
+            [currentusers addObject:users[i]];
+        }
+    }
+    currentPage++;
+    [_tableView reloadData];
+}
+
+- (void)myDismiss{
+   [SVProgressHUD dismiss];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showError{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No More!" message:@"There is no more users nearby." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *button = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    [alert addAction:button];
+    [self presentViewController:alert animated:NO completion:nil];
+
 }
 
 /*
@@ -63,7 +110,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection: (NSInteger)section{
-    return  [locations count];
+    return  [currentusers count];
 }
 
 
@@ -72,12 +119,22 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"resultcell"];
     }
-    CLLocation *loc = locations[indexPath.row];
+    CLLocation *loc = currentusers[indexPath.row];
     CLLocationDistance dis = [loc distanceFromLocation:_currentLocation];
     cell.textLabel.text = [NSString stringWithFormat:@"Long: %.0f,Lat: %.0f, Distance: %.0f Km", loc.coordinate.longitude, loc.coordinate.latitude,dis/1000];
     return cell;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    if(scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height -44){
+        if(currentPage <= maxPages){
+            [self getMoreData];
+        }
+        else{
+            [self showError];
+        }
+    }
+}
 
 
 @end
