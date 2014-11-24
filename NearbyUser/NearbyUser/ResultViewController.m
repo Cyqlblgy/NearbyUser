@@ -126,6 +126,7 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    CGFloat x = scrollView.frame.size.height;
     if(scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height -44){
         if(currentPage <= maxPages){
             [self getMoreData];
