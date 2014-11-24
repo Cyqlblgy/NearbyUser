@@ -8,13 +8,14 @@
 
 #import "ResultViewController.h"
 #import "SVProgressHUD.h"
+#import "UserLocation.h"
 
 @interface ResultViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>{
     NSMutableArray *locations;
     NSMutableArray *users;
     NSMutableArray *currentusers;
-    int maxPages;
-    int currentPage;
+    NSInteger maxPages;
+    NSInteger currentPage;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -51,11 +52,30 @@
 - (void)findNearbyUser{
     for(CLLocation *loc in locations){
       CLLocationDistance distance= [loc distanceFromLocation:_currentLocation];
-        if(distance/100000 < 10){
-            [users addObject:loc];
+        
+        if(distance/1000 < 1000){
+            UserLocation *user = [[UserLocation alloc] init];
+            user.longitude = loc.coordinate.longitude;
+            user.latitude = loc.coordinate.latitude;
+            user.distance = distance/1000;
+            [users addObject:user];
         }
     }
+    [self sortUsers];
     maxPages = [users count]/50;
+}
+
+- (void)sortUsers{
+       [users sortUsingComparator:^NSComparisonResult(id a, id b){
+        CLLocationDistance disOne = [(UserLocation *)a distance];
+        CLLocationDistance disTwo = [(UserLocation *)b distance];
+           if(disOne <= disTwo){
+               return NSOrderedAscending;
+           }
+           else{
+               return NSOrderedDescending;
+           }
+    }];
 }
 
 - (void)getMoreData{
@@ -63,13 +83,13 @@
     [NSTimer scheduledTimerWithTimeInterval:1 target:self
                                    selector:@selector(myDismiss) userInfo:nil repeats:NO];
     if(currentPage < maxPages){
-        for(int i= currentPage*50;i <(currentPage+1)*50; i++){
+        for(NSInteger i= currentPage*50;i <(currentPage+1)*50; i++){
             [currentusers addObject:users[i]];
         }
     }
     else{
-        int usercount = [users count];
-        for(int i = currentPage*50; i <usercount; i++){
+        NSInteger usercount = [users count];
+        for(NSInteger i = currentPage*50; i <usercount; i++){
             [currentusers addObject:users[i]];
         }
     }
@@ -119,14 +139,13 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"resultcell"];
     }
-    CLLocation *loc = currentusers[indexPath.row];
-    CLLocationDistance dis = [loc distanceFromLocation:_currentLocation];
-    cell.textLabel.text = [NSString stringWithFormat:@"Long: %.0f,Lat: %.0f, Distance: %.0f Km", loc.coordinate.longitude, loc.coordinate.latitude,dis/1000];
+    UserLocation *loc = currentusers[indexPath.row];
+    CLLocationDistance dis = loc.distance;
+    cell.textLabel.text = [NSString stringWithFormat:@"Long: %.0f,Lat: %.0f, Distance: %.0f Km", loc.longitude, loc.latitude,dis];
     return cell;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    CGFloat x = scrollView.frame.size.height;
     if(scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height -44){
         if(currentPage <= maxPages){
             [self getMoreData];

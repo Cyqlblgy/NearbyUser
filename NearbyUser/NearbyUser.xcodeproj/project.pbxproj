@@ -17,6 +17,7 @@
 		B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AF61A1AD81800208F53 /* ResultViewController.m */; };
 		B9F99AF91A1C2EF500208F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9F99AF81A1C2EF500208F53 /* CoreLocation.framework */; };
 		B9F99AFF1A1ED14F00208F53 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99AFE1A1ED14F00208F53 /* SVProgressHUD.m */; };
+		B9F99B031A22E0F800208F53 /* UserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = B9F99B021A22E0F800208F53 /* UserLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		B9F99AF81A1C2EF500208F53 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B9F99AFD1A1ED14F00208F53 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVProgressHUD.h; path = NearbyUser/SVProgressHUD.h; sourceTree = "<group>"; };
 		B9F99AFE1A1ED14F00208F53 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = NearbyUser/SVProgressHUD.m; sourceTree = "<group>"; };
+		B9F99B011A22E0F800208F53 /* UserLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocation.h; sourceTree = "<group>"; };
+		B9F99B021A22E0F800208F53 /* UserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +103,8 @@
 				B9F99AD71A1ACF9000208F53 /* Main.storyboard */,
 				B9F99AF51A1AD81800208F53 /* ResultViewController.h */,
 				B9F99AF61A1AD81800208F53 /* ResultViewController.m */,
+				B9F99B011A22E0F800208F53 /* UserLocation.h */,
+				B9F99B021A22E0F800208F53 /* UserLocation.m */,
 				B9F99ADA1A1ACF9000208F53 /* Images.xcassets */,
 				B9F99ACD1A1ACF9000208F53 /* Supporting Files */,
 			);
@@ -255,6 +260,7 @@
 				B9F99AFF1A1ED14F00208F53 /* SVProgressHUD.m in Sources */,
 				B9F99AD01A1ACF9000208F53 /* main.m in Sources */,
 				B9F99AF71A1AD81800208F53 /* ResultViewController.m in Sources */,
+				B9F99B031A22E0F800208F53 /* UserLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
